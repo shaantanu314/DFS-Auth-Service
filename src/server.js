@@ -11,7 +11,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use(cors());
+const corsOptions = {
+  origin: [/^http:\/\/localhost:[0-9]*$/, /^https:\/\/localhost:[0-9]*$/],
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 const PORT = process.env.PORT || 3000;
 

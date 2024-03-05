@@ -12,6 +12,8 @@ const logoutUser = async (req, res, next) => {
 
     await deleteRefreshToken(refreshTokenCookie);
 
+    res.clearCookie("dfs-auth-refresh-token", { path: "/" });
+
     res.status(200).send({
       message: "user logged out",
       error: false,

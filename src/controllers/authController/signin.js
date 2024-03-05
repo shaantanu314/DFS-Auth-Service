@@ -71,15 +71,16 @@ const signin = async (req, res, next) => {
 
     // set the cookie with the response
     res.cookie("dfs-auth-refresh-token", refreshToken, {
-      secure: true,
+      secure: false,
       httpOnly: true,
-      sameSite: "strict",
+      sameSite: "Lax",
       expire: expires_at,
     });
 
     res.status(200).send({
       data: {
         user: _omit(user, ["user_password", "created_at"]),
+        user_permissions,
         accessToken,
       },
       message: "user logged-in successfully",
